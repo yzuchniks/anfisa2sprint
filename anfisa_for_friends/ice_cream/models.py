@@ -4,8 +4,17 @@ from core.models import PublishedModel
 
 
 class Category(PublishedModel):
-    title = models.CharField('Название', max_length=256)
-    slug = models.SlugField('Слаг', max_length=64, unique=True)
+    title = models.CharField(
+        'Название',
+        max_length=256,
+        help_text='Уникальное название категории, не более 256 символов'
+    )
+    slug = models.SlugField(
+        'Слаг',
+        max_length=64,
+        unique=True,
+        help_text='Уникальный слаг, не более 64 символов'
+    )
     output_order = models.PositiveSmallIntegerField(
         'Порядок отображения', default=100
     )
@@ -19,8 +28,17 @@ class Category(PublishedModel):
 
 
 class Topping(PublishedModel):
-    title = models.CharField('Название', max_length=256)
-    slug = models.SlugField('Слаг', max_length=64, unique=True)
+    title = models.CharField(
+        'Название',
+        max_length=256,
+        help_text='Уникальное название топпинга, не более 256 символов'
+    )
+    slug = models.SlugField(
+        'Слаг',
+        max_length=64,
+        unique=True,
+        help_text='Уникальный слаг, не более 64 символов'
+    )
 
     class Meta:
         verbose_name = 'Топпинг'
@@ -31,7 +49,11 @@ class Topping(PublishedModel):
 
 
 class Wrapper(PublishedModel):
-    title = models.CharField('Название', max_length=256)
+    title = models.CharField(
+        'Название',
+        max_length=256,
+        help_text='Уникальное название обёртки, не более 256 символов'
+    )
 
     class Meta:
         verbose_name = 'Обертка'
@@ -42,8 +64,15 @@ class Wrapper(PublishedModel):
 
 
 class IceCream(PublishedModel):
-    title = models.CharField('Название', max_length=256)
-    description = models.TextField('Описание')
+    title = models.CharField(
+        'Название',
+        max_length=256,
+        help_text='Уникальное название мороженого, не более 256 символов'
+    )
+    description = models.TextField(
+        'Описание',
+        help_text='Подробное описание мороженого'
+    )
     wrapper = models.OneToOneField(
         Wrapper,
         on_delete=models.SET_NULL,
